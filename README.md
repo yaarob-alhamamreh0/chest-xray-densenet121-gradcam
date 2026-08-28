@@ -1,13 +1,13 @@
 # 🫁 Chest X-Ray AI Diagnostic System with DenseNet-121 & Explainable Grad-CAM
 
 <p align="center">
-  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
-  <img src="https://img.shields.io/badge/CUDA-000000?style=for-the-badge&logo=nvidia&logoColor=76B900" />
-  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
-  <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" />
-  <img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" />
+  <img src="[https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)" />
+  <img src="[https://img.shields.io/badge/CUDA-000000?style=for-the-badge&logo=nvidia&logoColor=76B900](https://img.shields.io/badge/CUDA-000000?style=for-the-badge&logo=nvidia&logoColor=76B900)" />
+  <img src="[https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)" />
+  <img src="[https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)" />
+  <img src="[https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)" />
+  <img src="[https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)" />
+  <img src="[https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)" />
 </p>
 
 An end-to-end Deep Learning Clinical Decision Support System (CDSS) for automated detection and differential diagnosis of **Pneumonia** (Normal vs. Bacterial vs. Viral) from Chest Radiographs (CXR). The pipeline integrates **DenseNet-121**, Automatic Mixed Precision (AMP), **Explainable AI (Grad-CAM)** heatmaps, and a high-throughput **FastAPI** backend served to a modern glassmorphic web dashboard.
@@ -18,9 +18,9 @@ An end-to-end Deep Learning Clinical Decision Support System (CDSS) for automate
 
 Evaluated on an unseen test cohort of **624 clinical chest radiographs**:
 
-- **Overall Test Accuracy:** `74.84%`
-- **Macro F1-Score:** `0.7349`
-- **Weighted F1-Score:** `0.7463`
+* **Overall Test Accuracy:** `74.84%`
+* **Macro F1-Score:** `0.7349`
+* **Weighted F1-Score:** `0.7463`
 
 ### Diagnostic Classification Breakdown
 
@@ -40,78 +40,16 @@ Evaluated on an unseen test cohort of **624 clinical chest radiographs**:
  VIRAL             0          14         134
 ```
 
-🧠 Architecture & Methodology
+### 🧠 Architecture & Methodology
 
-+-------------------------------------------------------------+
-|                  Input CXR (224x224 RGB)                    |
-+-------------------------------------------------------------+
-                              │
-                              ▼
-+-------------------------------------------------------------+
-|               CLAHE Contrast Enhancement                    |
-|             (clipLimit = 2.0, tileGrid = 8x8)               |
-+-------------------------------------------------------------+
-                              │
-                              ▼
-+-------------------------------------------------------------+
-|               DenseNet-121 Backbone                         |
-|     (Feature Reuse Across Dense Blocks 1, 2, 3, 4)          |
-+-------------------------------------------------------------+
-          │                                           │
-          │ [Forward Activations]                     │ [Conv2 Target Layer]
-          ▼                                           ▼
-+------------------------------------+   +------------------------------------+
-|   Global Average Pooling           |   |       Grad-CAM Visualizer          |
-|   + Dropout(0.3) + Linear(3)       |   |  (Backprop Gradients & Weighting)  |
-+------------------------------------+   +------------------------------------+
-          │                                           │
-          ▼                                           ▼
-+------------------------------------+   +------------------------------------+
-|  Probabilities & Class Output      |   |    ColorMap JET Heatmap Overlay    |
-|   (NORMAL / BACTERIAL / VIRAL)     |   |    (Localizes Pulmonary Lesions)   |
-+------------------------------------+   +------------------------------------+
-
-
-📁 Repository Structure
-
-chest-xray-densenet121-gradcam/
-│
-├── backend/
-│   ├── app.py                     # FastAPI server endpoints & static frontend mount
-│   └── infer.py                   # DenseNet-121 inference & Grad-CAM extraction logic
-│
-├── frontend/
-│   └── index.html                 # Tailwind CSS & Chart.js interactive web dashboard
-│
-├── models/
-│   └── densenet121_xray_best.pt   # Serialized DenseNet-121 model weights
-│
-├── src/
-│   ├── dataset.py                 # CLAHE preprocessing & DataLoader pipeline
-│   ├── model.py                   # DenseNet-121 architecture definition
-│   └── train.py                   # AMP-accelerated training & evaluation loops
-│
-├── chest_xray/                    # Chest Radiograph dataset directory (Train/Val/Test)
-├── requirements.txt               # Project dependencies
-└── README.md                      # Project documentation
-
-
-🚀 Quickstart & Execution
-# 1. Install dependencies
-pip install torch torchvision fastapi uvicorn opencv-python pillow numpy scikit-learn python-multipart
-
-# 2. Launch FastAPI Server
-python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000 --reload
-
-Navigate to http://127.0.0.1:8000 to upload radiographs and inspect Grad-CAM visualizations.
-
-
-👨‍💻 Developer 
-Yaarob Alhamamreh
-
-
-GitHub: @yaarob-alhamamreh0
-
-
-Focus: Artificial Intelligence & Deep Learning Engineering
-
+Input CXR (224x224 RGB)
+       │
+       ▼
+[CLAHE Preprocessing] (clipLimit=2.0, tileGrid=(8,8))
+       │
+       ▼
+[DenseNet-121 Feature Extractor]
+       │
+       ├──► [Adaptive AvgPool + Dropout(0.3) + Linear(3)] ──► Softmax Probabilities
+       │
+       └──► [Grad-CAM Hook: denseblock4.denselayer16.conv2] ──► ColorMap JET Overlay
