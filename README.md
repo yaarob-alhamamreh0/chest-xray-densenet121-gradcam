@@ -42,19 +42,58 @@ Evaluated on an unseen test cohort of **624 clinical chest radiographs**:
 
 
 🧠 Architecture & Methodology
-Input CXR (224x224 RGB)
-       │
-       ▼
- [CLAHE Contrast Enhancement] (clipLimit=2.0, tileGrid=(8,8))
-       │
-       ▼
- [DenseNet-121 Backbone] (Feature Reuse Across Dense Blocks 1-4)
-       │
-       ├──► [Global Average Pooling + Dropout(0.3) + Linear(3)] ──► Probabilities (Softmax)
-       │
-       └──► [Grad-CAM Layer: features.denseblock4.denselayer16.conv2] ──► ColorMap JET Overlay
++-------------------------------------------------------------+
+|                  Input CXR (224x224 RGB)                    |
++-------------------------------------------------------------+
+                              │
+                              ▼
++-------------------------------------------------------------+
+|               CLAHE Contrast Enhancement                    |
+|             (clipLimit = 2.0, tileGrid = 8x8)               |
++-------------------------------------------------------------+
+                              │
+                              ▼
++-------------------------------------------------------------+
+|               DenseNet-121 Backbone                         |
+|     (Feature Reuse Across Dense Blocks 1, 2, 3, 4)          |
++-------------------------------------------------------------+
+          │                                           │
+          │ [Forward Activations]                     │ [Conv2 Target Layer]
+          ▼                                           ▼
++------------------------------------+   +------------------------------------+
+|   Global Average Pooling           |   |       Grad-CAM Visualizer          |
+|   + Dropout(0.3) + Linear(3)       |   |  (Backprop Gradients & Weighting)  |
++------------------------------------+   +------------------------------------+
+          │                                           │
+          ▼                                           ▼
++------------------------------------+   +------------------------------------+
+|  Probabilities & Class Output      |   |    ColorMap JET Heatmap Overlay    |
+|   (NORMAL / BACTERIAL / VIRAL)     |   |    (Localizes Pulmonary Lesions)   |
++------------------------------------+   +------------------------------------+
 
 
+📁 Repository Structure
+
+chest-xray-densenet121-gradcam/
+│
+├── backend/
+│   ├── app.py                     # FastAPI server endpoints & static frontend mount
+│   └── infer.py                   # DenseNet-121 inference & Grad-CAM extraction logic
+│
+├── frontend/
+│   └── index.html                 # Tailwind CSS & Chart.js interactive web dashboard
+│
+├── models/
+│   └── densenet121_xray_best.pt   # Serialized DenseNet-121 model weights
+│
+├── src/
+│   ├── dataset.py                 # CLAHE preprocessing & DataLoader pipeline
+│   ├── model.py                   # DenseNet-121 architecture definition
+│   └── train.py                   # AMP-accelerated training & evaluation loops
+│
+├── chest_xray/                    # Chest Radiograph dataset directory (Train/Val/Test)
+├── requirements.txt               # Project dependencies
+└── README.md                      # Project documentation
 
 
 🚀 Quickstart & Execution
