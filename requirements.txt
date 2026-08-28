@@ -1,0 +1,11 @@
+torch>=2.2.0
+torchvision>=0.17.0
+fastapi>=0.110.0
+uvicorn>=0.28.0
+opencv-python
+matplotlib
+scikit-learn
+pandas
+numpy>=1.26.0
+pydantic
+Pillow

@@ -1,0 +1,2 @@
+to run the site : http://127.0.0.1:8000/ 
+or in terminal : python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000 --reload

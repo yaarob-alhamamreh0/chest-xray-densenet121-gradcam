@@ -1,0 +1,128 @@
+=================================================================
+  Device : cuda:0  (NVIDIA GeForce RTX 3060 Laptop GPU)
+  AMP    : ON (Tensor Cores)
+  Epochs : 8   |   Batch : 32   |   LR : 0.0001
+=================================================================
+
+Loading dataset...
+[TRAIN]  5216 samples  |  NORMAL: 1341  BACTERIAL: 2530  VIRAL: 1345
+[VAL  ]    16 samples  |  NORMAL: 8  BACTERIAL: 8  VIRAL: 0
+[TEST ]   624 samples  |  NORMAL: 234  BACTERIAL: 242  VIRAL: 148
+
+Computing class weights...
+  Weights: {'NORMAL': '1.2965', 'BACTERIAL': '0.6872', 'VIRAL': '1.2927'}
+
+Building model...
+
+-----------------------------------------------------------------
+  Starting training...
+-----------------------------------------------------------------
+  Epoch 01  [ 20/163]  loss=0.6166
+  Epoch 01  [ 40/163]  loss=0.8626
+  Epoch 01  [ 60/163]  loss=0.3951
+  Epoch 01  [ 80/163]  loss=0.5285
+  Epoch 01  [100/163]  loss=0.5202
+  Epoch 01  [120/163]  loss=0.4962
+  Epoch 01  [140/163]  loss=0.4745
+  Epoch 01  [160/163]  loss=0.2708
+
+Epoch 01/8  (117s)  train_loss=0.5705  train_acc=0.7343  |  val_loss=1.3955  val_acc=0.3750  val_F1=0.3357
+  [SAVED] Best model -> densenet121_xray_best.pt  (val_F1=0.3357)
+  Epoch 02  [ 20/163]  loss=0.3871
+  Epoch 02  [ 40/163]  loss=0.3905
+  Epoch 02  [ 60/163]  loss=0.3129
+  Epoch 02  [ 80/163]  loss=0.6093
+  Epoch 02  [100/163]  loss=0.3321
+  Epoch 02  [120/163]  loss=0.3242
+  Epoch 02  [140/163]  loss=0.5218
+  Epoch 02  [160/163]  loss=0.3575
+
+Epoch 02/8  (102s)  train_loss=0.4280  train_acc=0.8000  |  val_loss=1.6816  val_acc=0.3125  val_F1=0.3000
+  Epoch 03  [ 20/163]  loss=0.3891
+  Epoch 03  [ 40/163]  loss=0.3810
+  Epoch 03  [ 60/163]  loss=0.3030
+  Epoch 03  [ 80/163]  loss=0.4035
+  Epoch 03  [100/163]  loss=0.2792
+  Epoch 03  [120/163]  loss=0.3844
+  Epoch 03  [140/163]  loss=0.3880
+  Epoch 03  [160/163]  loss=0.3793
+
+Epoch 03/8  (100s)  train_loss=0.3830  train_acc=0.8238  |  val_loss=1.0215  val_acc=0.5625  val_F1=0.4675
+  [SAVED] Best model -> densenet121_xray_best.pt  (val_F1=0.4675)
+  Epoch 04  [ 20/163]  loss=0.3031
+  Epoch 04  [ 40/163]  loss=0.1874
+  Epoch 04  [ 60/163]  loss=0.3057
+  Epoch 04  [ 80/163]  loss=0.2050
+  Epoch 04  [100/163]  loss=0.4631
+  Epoch 04  [120/163]  loss=0.2528
+  Epoch 04  [140/163]  loss=0.2024
+  Epoch 04  [160/163]  loss=0.3876
+
+Epoch 04/8  (100s)  train_loss=0.3281  train_acc=0.8524  |  val_loss=0.9864  val_acc=0.6250  val_F1=0.4778
+  [SAVED] Best model -> densenet121_xray_best.pt  (val_F1=0.4778)
+  Epoch 05  [ 20/163]  loss=0.2145
+  Epoch 05  [ 40/163]  loss=0.2747
+  Epoch 05  [ 60/163]  loss=0.2609
+  Epoch 05  [ 80/163]  loss=0.4679
+  Epoch 05  [100/163]  loss=0.1579
+  Epoch 05  [120/163]  loss=0.2389
+  Epoch 05  [140/163]  loss=0.1858
+  Epoch 05  [160/163]  loss=0.1965
+
+Epoch 05/8  (100s)  train_loss=0.2845  train_acc=0.8714  |  val_loss=1.4365  val_acc=0.2500  val_F1=0.2485
+  Epoch 06  [ 20/163]  loss=0.2883
+  Epoch 06  [ 40/163]  loss=0.1908
+  Epoch 06  [ 60/163]  loss=0.3327
+  Epoch 06  [ 80/163]  loss=0.4629
+  Epoch 06  [100/163]  loss=0.2037
+  Epoch 06  [120/163]  loss=0.2628
+  Epoch 06  [140/163]  loss=0.2076
+  Epoch 06  [160/163]  loss=0.1426
+
+Epoch 06/8  (101s)  train_loss=0.2358  train_acc=0.8980  |  val_loss=2.1239  val_acc=0.2500  val_F1=0.2279
+  Epoch 07  [ 20/163]  loss=0.1313
+  Epoch 07  [ 40/163]  loss=0.1674
+  Epoch 07  [ 60/163]  loss=0.2986
+  Epoch 07  [ 80/163]  loss=0.2039
+  Epoch 07  [100/163]  loss=0.2706
+  Epoch 07  [120/163]  loss=0.1745
+  Epoch 07  [140/163]  loss=0.2140
+  Epoch 07  [160/163]  loss=0.1626
+
+Epoch 07/8  (100s)  train_loss=0.1978  train_acc=0.9179  |  val_loss=1.4759  val_acc=0.3125  val_F1=0.2872
+  Epoch 08  [ 20/163]  loss=0.2095
+  Epoch 08  [ 40/163]  loss=0.1116
+  Epoch 08  [ 60/163]  loss=0.1884
+  Epoch 08  [ 80/163]  loss=0.1565
+  Epoch 08  [100/163]  loss=0.2226
+  Epoch 08  [120/163]  loss=0.2874
+  Epoch 08  [140/163]  loss=0.1452
+  Epoch 08  [160/163]  loss=0.0411
+
+Epoch 08/8  (100s)  train_loss=0.1811  train_acc=0.9195  |  val_loss=1.6408  val_acc=0.3125  val_F1=0.2872
+
+=================================================================
+  Loading best checkpoint (epoch 4, F1=0.4778)...
+  Test   loss=0.8913  acc=0.7484  macro_F1=0.7349
+  Test   loss=0.8913  acc=0.7484  macro_F1=0.7349
+  Test   loss=0.8913  acc=0.7484  macro_F1=0.7349
+
+  Classification Report:
+              precision    recall  f1-score   support
+
+      NORMAL     1.0000    0.4957    0.6629       234
+   BACTERIAL     0.8577    0.8967    0.8768       242
+       VIRAL     0.5255    0.9054    0.6650       148
+
+    accuracy                         0.7484       624
+   macro avg     0.7944    0.7659    0.7349       624
+weighted avg     0.8323    0.7484    0.7463       624
+
+  Confusion Matrix  (rows=actual, cols=predicted):
+                  NORMAL   BACTERIAL       VIRAL
+  NORMAL             116          22          96
+  BACTERIAL            0         217          25
+  VIRAL                0          14         134
+
+=================================================================
+  Training complete.  Best val F1 = 0.4778  (epoch 4)
