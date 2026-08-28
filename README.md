@@ -41,6 +41,8 @@ Evaluated on an unseen test cohort of **624 clinical chest radiographs**:
 ```
 
 🧠 Architecture & Methodology
+
+
 Input CXR (224x224 RGB)
        │
        ▼
@@ -56,6 +58,8 @@ Input CXR (224x224 RGB)
 
 
 📁 Repository Structure
+
+
 chest-xray-densenet121-gradcam/
 ├── backend/
 │   ├── app.py                   # FastAPI endpoints & static frontend mounting
