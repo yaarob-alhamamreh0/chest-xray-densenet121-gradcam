@@ -86,4 +86,4 @@ Navigate to [http://127.0.0.1:8000](http://127.0.0.1:8000) to upload radiographs
 Yaarob Alhamamreh
 GitHub: @yaarob-alhamamreh0
 
-Focus: Artificial Intelligence & Deep Learning Engineering[cite: 1, 2]
+Focus: Artificial Intelligence & Deep Learning Engineering
