@@ -41,6 +41,7 @@ Evaluated on an unseen test cohort of **624 clinical chest radiographs**:
 ```
 
 ### 🧠 Architecture & Methodology
+```
 
 Input CXR (224x224 RGB)
        │
@@ -53,3 +54,36 @@ Input CXR (224x224 RGB)
        ├──► [Adaptive AvgPool + Dropout(0.3) + Linear(3)] ──► Softmax Probabilities
        │
        └──► [Grad-CAM Hook: denseblock4.denselayer16.conv2] ──► ColorMap JET Overlay
+```
+
+###📁 Repository Structure
+```
+chest-xray-densenet121-gradcam/
+├── backend/
+│   ├── app.py                     # FastAPI backend & web server
+│   └── infer.py                   # PyTorch inference & Grad-CAM pipeline
+├── frontend/
+│   └── index.html                 # Tailwind CSS & Chart.js interface
+├── models/
+│   └── densenet121_xray_best.pt   # DenseNet-121 trained checkpoint
+├── src/
+│   ├── dataset.py                 # PyTorch Dataset & CLAHE transforms
+│   ├── model.py                   # Network architectural setup
+│   └── train.py                   # AMP-accelerated training pipeline
+├── requirements.txt               # Environment dependencies
+└── README.md                      # Technical documentation
+```
+###🚀 Quickstart & Execution
+```
+1. Install dependencies
+pip install torch torchvision fastapi uvicorn opencv-python pillow numpy scikit-learn python-multipart
+2. Launch FastAPI Server
+python -m uvicorn backend.app:app --host 127.0.0.1 --port 8000 --reload
+
+Navigate to [http://127.0.0.1:8000](http://127.0.0.1:8000) to upload radiographs and inspect Grad-CAM visualizations.
+```
+### 👨‍💻Developer
+Yaarob Alhamamreh
+GitHub: @yaarob-alhamamreh0
+
+Focus: Artificial Intelligence & Deep Learning Engineering[cite: 1, 2]
