@@ -40,9 +40,8 @@ Evaluated on an unseen test cohort of **624 clinical chest radiographs**:
  VIRAL             0          14         134
 ```
 
+
 🧠 Architecture & Methodology
-
-
 Input CXR (224x224 RGB)
        │
        ▼
@@ -56,25 +55,6 @@ Input CXR (224x224 RGB)
        └──► [Grad-CAM Layer: features.denseblock4.denselayer16.conv2] ──► ColorMap JET Overlay
 
 
-
-📁 Repository Structure
-
-
-chest-xray-densenet121-gradcam/
-├── backend/
-│   ├── app.py                   # FastAPI endpoints & static frontend mounting
-│   └── infer.py                 # DenseNet-121 inference & Grad-CAM extraction
-├── frontend/
-│   └── index.html               # Tailwind CSS & Chart.js interactive dashboard
-├── models/
-│   └── densenet121_xray_best.pt # Saved model checkpoint weights
-├── src/
-│   ├── dataset.py               # CLAHE preprocessing & DataLoader pipelines
-│   ├── model.py                 # DenseNet-121 architectural definition
-│   └── train.py                 # AMP-accelerated training loop & evaluation
-├── chest_xray/                  # Chest Radiograph dataset directory
-├── requirements.txt             # Global project dependencies
-└── README.md                    # Project technical documentation
 
 
 🚀 Quickstart & Execution
